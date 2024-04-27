@@ -1,8 +1,8 @@
-# React + Vite
+# BikeChain Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This Project is for rent Bycicles in a simple way, actually using BSC testnet.
+Using BSC testnet, ethers, web3Modal for full compatibility with multiple wallets and Chakra UI for the front end this dapp can be ececuted properly and easy to understand
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+
