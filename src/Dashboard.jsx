@@ -76,7 +76,7 @@ const Dashboard = () => {
         return () => {
             clearInterval(intervalId);
         };
-    }, [isConnected, walletProvider, address, config]);
+    }, [isConnected, walletProvider, address]);
 
 
     useEffect(() => {
@@ -98,7 +98,7 @@ const Dashboard = () => {
         return () => {
             clearInterval(intervalId);
         };
-    }, [isConnected, walletProvider, address, config]);
+    }, [isConnected, walletProvider, address]);
 
     useEffect(() => {
         const checkRenterExists = async () => {
@@ -113,7 +113,7 @@ const Dashboard = () => {
         };
 
         checkRenterExists();
-    }, [isConnected, walletProvider, address, config]);
+    }, [isConnected, walletProvider, address]);
 
 
     useEffect(() => {
@@ -174,7 +174,7 @@ const Dashboard = () => {
         return () => {
             clearInterval(intervalId);
         };
-    }, [isConnected, walletProvider, address, config]);
+    }, [isConnected, walletProvider, address]);
 
 
 
