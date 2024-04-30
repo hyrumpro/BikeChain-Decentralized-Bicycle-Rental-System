@@ -11,7 +11,6 @@ import {
     Icon,
     Button,
     useBreakpointValue,
-    Tooltip,
     Image,
     VStack,
     FormControl,
@@ -53,6 +52,9 @@ const Dashboard = () => {
     const { walletProvider } = useWeb3ModalProvider();
     const toast = useToast();
     console.log(address, isConnected, chainId);
+
+
+
 
 
     useEffect(() => {
@@ -173,6 +175,7 @@ const Dashboard = () => {
             clearInterval(intervalId);
         };
     }, [isConnected, walletProvider, address, config]);
+
 
 
     const handleCheckIn = async (bicycleId) => {
@@ -443,7 +446,9 @@ const Dashboard = () => {
                 )}
             </Flex>
 
+            {renterExists && (
             <Flex justify="center" mb={8} flexWrap="wrap">
+
                 <motion.div
                     whileHover={{scale: 1.05}}
                     whileTap={{scale: 0.95}}
@@ -531,8 +536,10 @@ const Dashboard = () => {
                         </StatNumber>
                     </Stat>
                 </motion.div>
-            </Flex>
+            </Flex> )}
 
+
+            {renterExists && (
             <Flex justify="center" mb={8} flexWrap="wrap">
                 <Box
                     as="form"
@@ -584,7 +591,7 @@ const Dashboard = () => {
                         Credit Now
                     </Button>
                 </Box>
-            </Flex>
+            </Flex>)}
 
             <Flex justify="center" mb={8} flexWrap="wrap">
                 <Box bg={bgColor} minH="100vh" py={8}>
@@ -615,12 +622,14 @@ const Dashboard = () => {
                                         colorScheme="teal"
                                         mr={4}
                                         onClick={() => handleCheckIn(1)}
+                                        disabled={!isConnected}
                                     >
                                         Check In
                                     </Button>
                                     <Button
                                         colorScheme="teal"
                                         onClick={() => handleCheckOut(1)}
+                                        disabled={!isConnected}
                                     >
                                         Check Out
                                     </Button>
@@ -648,12 +657,14 @@ const Dashboard = () => {
                                         colorScheme="teal"
                                         mr={4}
                                         onClick={() => handleCheckIn(2)}
+                                        disabled={!isConnected}
                                     >
                                         Check In
                                     </Button>
                                     <Button
                                         colorScheme="teal"
                                         onClick={() => handleCheckOut(2)}
+                                        disabled={!isConnected}
                                     >
                                         Check Out
                                     </Button>
@@ -673,12 +684,14 @@ const Dashboard = () => {
                                         colorScheme="teal"
                                         mr={4}
                                         onClick={() => handleCheckIn(3)}
+                                        disabled={!isConnected}
                                     >
                                         Check In
                                     </Button>
                                     <Button
                                         colorScheme="teal"
                                         onClick={() => handleCheckOut(3)}
+                                        disabled={!isConnected}
                                     >
                                         Check Out
                                     </Button>
@@ -688,30 +701,6 @@ const Dashboard = () => {
                     </Flex>
                 </Box>
             </Flex>
-
-
-            {isDesktop && (
-                <Flex justify="center" mt={8}>
-                    <Tooltip
-                        label="This is a tooltip with some helpful information!"
-                        aria-label="A tooltip"
-                    >
-                        <Box
-                            as={motion.div}
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                            transition={{ duration: 0.2 }}
-                            p={4}
-                            bg="teal.500"
-                            color="white"
-                            borderRadius="md"
-                            cursor="pointer"
-                        >
-                            <Text fontWeight="bold">Helpful Tooltip</Text>
-                        </Box>
-                    </Tooltip>
-                </Flex>
-            )}
         </Box>
     );
 };
