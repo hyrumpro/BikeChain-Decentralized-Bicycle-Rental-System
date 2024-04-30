@@ -671,6 +671,7 @@ const Dashboard = () => {
                                 </Flex>
                             </Box>
 
+
                             <Box p={6} bg="white" boxShadow="md" borderRadius="md" maxW="sm">
                                 <Image src={bicycleImage} alt="Bicycle" mb={4} />
                                 <Heading as="h3" size="md" mb={2}>
