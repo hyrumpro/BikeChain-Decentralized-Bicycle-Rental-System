@@ -1,10 +1,17 @@
 import { Box, Button, Flex, Heading, IconButton, Spacer, useColorMode, useColorModeValue } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { Link } from 'react-router-dom';
+import { useWeb3 } from '../../contexts/Web3Context';
+
+const shortenAddress = (address) => {
+  if (!address) return '';
+  return `${address.substring(0, 6)}...${address.substring(address.length - 4)}`;
+};
 
 const Navbar = () => {
   const { toggleColorMode } = useColorMode();
   const bgColor = useColorModeValue('gray.100', 'gray.900');
+  const { isConnected, address, connectWallet } = useWeb3();
 
   return (
     <Flex as="nav" align="center" justify="space-between" wrap="wrap" p="1.5rem" bg="teal.500" color="white" width="100%">
@@ -24,8 +31,14 @@ const Navbar = () => {
           variant="ghost"
           aria-label="Toggle color mode"
         />
-        <Button bg="black" color="white" borderRadius="md" _hover={{ bg: 'gray.700', color: 'white', borderRadius: 'xl' }}>
-          <w3m-button />
+        <Button
+          bg="black"
+          color="white"
+          borderRadius="md"
+          _hover={{ bg: 'gray.700', color: 'white', borderRadius: 'xl' }}
+          onClick={() => connectWallet()}
+        >
+          {isConnected ? shortenAddress(address) : 'Connect Wallet'}
         </Button>
       </Box>
     </Flex>

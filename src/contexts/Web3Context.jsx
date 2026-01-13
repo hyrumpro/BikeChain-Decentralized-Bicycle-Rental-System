@@ -34,8 +34,8 @@ export const Web3Provider = ({ children }) => {
     loadProvider();
   }, [walletProvider]);
 
-  const connectWallet = async () => {
-    await open();
+  const connectWallet = async (options) => {
+    await open(options);
   };
 
   return (
