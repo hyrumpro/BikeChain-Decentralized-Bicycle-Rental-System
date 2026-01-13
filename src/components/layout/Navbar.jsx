@@ -11,25 +11,26 @@ const shortenAddress = (address) => {
 const Navbar = () => {
   const { toggleColorMode } = useColorMode();
   const bgColor = useColorModeValue('gray.100', 'gray.900');
+  const navBgColor = useColorModeValue('teal.500', 'gray.900');
   const { isConnected, address, connectWallet } = useWeb3();
 
   return (
-    <Flex as="nav" align="center" justify="space-between" wrap="wrap" p="1.5rem" bg="teal.500" color="white" width="100%">
+    <Flex as="nav" align="center" justify="space-between" wrap="wrap" p="1.5rem" bg={navBgColor} color="white" width="100%" gap={4}>
       <Link to="/">
-        <Flex align="center" mr={5}>
+        <Flex align="center">
           <Heading as="h1" size="lg" letterSpacing="-.1rem">
             Bike Rental App
           </Heading>
         </Flex>
       </Link>
       <Spacer />
-      <Box>
+      <Box display="flex" alignItems="center" gap={4}>
         <IconButton
           onClick={toggleColorMode}
-          mr={4}
           icon={bgColor === 'gray.100' ? <MoonIcon /> : <SunIcon />}
           variant="ghost"
           aria-label="Toggle color mode"
+          _hover={{ bg: 'whiteAlpha.200' }}
         />
         <Button
           bg="black"
