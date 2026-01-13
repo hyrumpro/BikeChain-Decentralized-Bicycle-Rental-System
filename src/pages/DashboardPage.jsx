@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Input, Button, VStack, SimpleGrid } from '@chakra-ui/react';
+import { Box, Flex, Heading, Input, Button, VStack, SimpleGrid, Stack } from '@chakra-ui/react';
 import { useState } from 'react';
 import bicycle1 from '../assets/bicycle-1.jpg';
 import bicycle2 from '../assets/bicycle-2.jpg';
@@ -23,7 +23,8 @@ const DashboardPage = () => {
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [amount, setAmount] = useState('');
+  const [payAmount, setPayAmount] = useState('');
+  const [depositAmount, setDepositAmount] = useState('');
 
   const handleAddRenter = async (e) => {
     e.preventDefault();
@@ -32,14 +33,14 @@ const DashboardPage = () => {
 
   const handlePayDue = async (e) => {
     e.preventDefault();
-    await payDue(address, { value: amount });
-    setAmount('');
+    await payDue(address, { value: payAmount });
+    setPayAmount('');
   };
 
   const handleDeposit = async (e) => {
     e.preventDefault();
-    await deposit(address, { value: amount });
-    setAmount('');
+    await deposit(address, { value: depositAmount });
+    setDepositAmount('');
   };
 
   return (
@@ -57,26 +58,26 @@ const DashboardPage = () => {
         </Box>
       )}
 
-      <Flex mb={8}>
-        <Box as="form" onSubmit={handlePayDue} mr={8} maxW="sm">
+      <Stack direction={{ base: 'column', md: 'row' }} spacing={8} mb={8}>
+        <Box as="form" onSubmit={handlePayDue} maxW="sm" flex={1}>
           <VStack spacing={4} align="stretch">
-            <Input placeholder="Amount" value={amount} onChange={(e) => setAmount(e.target.value)} />
+            <Input placeholder="Amount" value={payAmount} onChange={(e) => setPayAmount(e.target.value)} />
             <Button type="submit" colorScheme="teal" isLoading={paying}>
               Pay Due
             </Button>
           </VStack>
         </Box>
-        <Box as="form" onSubmit={handleDeposit} maxW="sm">
+        <Box as="form" onSubmit={handleDeposit} maxW="sm" flex={1}>
           <VStack spacing={4} align="stretch">
-            <Input placeholder="Amount" value={amount} onChange={(e) => setAmount(e.target.value)} />
+            <Input placeholder="Amount" value={depositAmount} onChange={(e) => setDepositAmount(e.target.value)} />
             <Button type="submit" colorScheme="teal" isLoading={depositing}>
               Deposit
             </Button>
           </VStack>
         </Box>
-      </Flex>
+      </Stack>
 
-      <SimpleGrid columns={[1, null, 3]} spacing={4}>
+      <SimpleGrid columns={[1, 2, 3]} spacing={4}>
         {bikes.map((bike) => (
           <BikeCard
             key={bike.id}
